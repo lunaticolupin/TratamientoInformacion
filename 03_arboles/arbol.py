@@ -14,7 +14,7 @@ class ArbolDecision:
 
     def crearRaiz(self, nuevoNodoID, nuevaPregunta):
         self.nodoRaiz = ArbolBin(nuevoNodoID, nuevaPregunta)
-        print("Nodo raíz creado %d "% nuevoNodoID)
+        print("Nodo raíz creado %d " % nuevoNodoID)
 
     def agregarNodoSi(self, nodoExistenteID, nuevoNodoID, nuevaPregunta):
         if (self.nodoRaiz is None):
@@ -26,15 +26,14 @@ class ArbolDecision:
         else:
             print("Nodo {nodoExistenteID} no encontrado")
 
-
-    def buscaArbolAgregarNodoSi(self, nodoActual, nodoExistenteID, nuevoNodoID, nuevaPregunta ):
+    def buscaArbolAgregarNodoSi(self, nodoActual, nodoExistenteID, nuevoNodoID, nuevaPregunta):
         if (nodoActual._nodoID == nodoExistenteID):
             if (nodoActual._nodoSi is None):
                 nodoActual._nodoSi = ArbolBin(nuevoNodoID, nuevaPregunta)
             else:
                 print(f"ADVERTENCIA: Sobreescribio el nodo previo (id={nodoActual._nodoSi.nodoID}) ligado a la respuesta SI del nodo {nodoExistenteID}")
                 nodoActual._nodoSi = ArbolBin(nuevoNodoID, nuevaPregunta)
-            return True    
+            return True
         else:
             if(nodoActual._nodoSi is not None):
                 if(self.buscaArbolAgregarNodoSi(nodoActual._nodoSi, nodoExistenteID, nuevoNodoID, nuevaPregunta)):
@@ -45,8 +44,7 @@ class ArbolDecision:
                     else:
                         return False
             return False
-    
-    
+
     def agregarNodoNo(self, nodoExistenteID, nuevoNodoID, nuevaPregunta):
         if (self.nodoRaiz is None):
             print("ERROR: no hay nodo raiz")
@@ -56,9 +54,8 @@ class ArbolDecision:
                 print(f"Nodo agregado {nuevoNodoID} a la respuesta \"no\" del nodo {nodoExistenteID}")
             else:
                 print(f"Nodo {nodoExistenteID} no encontrado")
-    
 
-    def buscaArbolAgregarNodoNo(self, nodoActual, nodoExistenteID, nuevoNodoID, nuevaPregunta ):
+    def buscaArbolAgregarNodoNo(self, nodoActual, nodoExistenteID, nuevoNodoID, nuevaPregunta):
         if (nodoActual._nodoID == nodoExistenteID):
             if (nodoActual._nodoNo is None):
                 nodoActual._nodoNo = ArbolBin(nuevoNodoID, nuevaPregunta)
@@ -76,8 +73,8 @@ class ArbolDecision:
                         return False
             else:
                 return False
-    
-    def consultarArbolBin(self, nodoActual = None):
+
+    def consultarArbolBin(self, nodoActual=None):
         if (nodoActual is None):
             self.consultarArbolBin(self.nodoRaiz)
             return
@@ -94,10 +91,9 @@ class ArbolDecision:
         if (nodoActual._nodoNo is None):
             print(f"ERROR: La respuesta \"NO\" de la pregunta \"{nodoActual._pregunta}\" no existe")
             return
-        
+
         self.pidePregunta(nodoActual)
 
-    
     def pidePregunta(self, nodoActual):
         respuesta = input(f"{nodoActual._pregunta} (\"Si\" o \"No\") ")
         respuesta = respuesta.lower()
@@ -109,13 +105,12 @@ class ArbolDecision:
         else:
             print("Debe responder \"Si\" o \"No\")")
             self.pidePregunta(nodoActual)
-    
 
-    def salidaArbolBin(self, tag = "", nodoActual = None):
+    def salidaArbolBin(self, tag="", nodoActual=None):
         if (tag == "" and nodoActual is None):
             self.salidaArbolBin("1", self.nodoRaiz)
             return
-        
+
         if (nodoActual is None):
             return
 
@@ -130,17 +125,18 @@ def main():
 
     print("Arbol de decisión")
     arbol.crearRaiz(1, "El animal come carne?")
-    arbol.agregarNodoSi(1,2,"El animal tiene rayas?")
-    arbol.agregarNodoNo(1,3,"El animal tiene rayas?")
-    arbol.agregarNodoSi(2,4,"El animal es un tigre")
-    arbol.agregarNodoNo(2,5,"El animal es un leopardo")
-    arbol.agregarNodoSi(3,6,"El animal es una cebra")
-    arbol.agregarNodoNo(3,7,"El animal es un caballo")
+    arbol.agregarNodoSi(1, 2, "El animal tiene rayas?")
+    arbol.agregarNodoNo(1, 3, "El animal tiene rayas?")
+    arbol.agregarNodoSi(2, 4, "El animal es un tigre")
+    arbol.agregarNodoNo(2, 5, "El animal es un leopardo")
+    arbol.agregarNodoSi(3, 6, "El animal es una cebra")
+    arbol.agregarNodoNo(3, 7, "El animal es un caballo")
 
     print("Consulta el árbol de decisión")
 
     while(respuesta != "si"):
         arbol.consultarArbolBin()
         respuesta = input("Salir (si/no) ").lower()
+
 
 main()
