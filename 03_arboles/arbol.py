@@ -73,6 +73,8 @@ class ArbolDecision:
                         return False
             else:
                 return False
+ 
+                
 
     def consultarArbolBin(self, nodoActual=None):
         if (nodoActual is None):
