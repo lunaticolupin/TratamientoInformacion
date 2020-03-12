@@ -2,8 +2,18 @@ import scipy.stats as ss
 import numpy as np
 import matplotlib.pyplot as plt
 
-X = ss.norm(2000,40)
-x = np.arange(X.ppf(0.01),X.ppf(0.99))
+promedio, desviacion = 0, 0.2
+normal = ss.norm(promedio, desviacion)
 
-plt.plot(x,X.pdf(x),"r")
+# ppf percent point function
+x = np.linspace(normal.ppf(0.01), normal.ppf(0.99), 100)
+
+# Función de Densidad de Probibilidad con Python
+fp = normal.pdf(x)
+
+plt.plot(x, fp)
+
+plt.title("Distribución Normal")
+plt.ylabel("probabilidad")
+plt.xlabel("valores")
 plt.show()
