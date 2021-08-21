@@ -1,7 +1,7 @@
 edad = int(input("¿Cuál es tu edad?"))
 ingresos = float(input("¿Cuales son tus ingresos mensuales?"))
 
-if (edad > 16 and ingresos >= 1000):
+if (edad > 16 and ingresos >= 1000): # && -> and, || -> or, ! -> not, != -> != 
     print("Tienes que cotizar")
     print("ADIOS")
 else:
